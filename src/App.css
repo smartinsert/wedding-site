@@ -28,6 +28,55 @@
   color: #61dafb;
 }
 
+.Homepage-background-image {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.Homepage-root {
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+}
+
+.Homepage-root div {
+  display: "flex";
+  justify-content: "center";
+  margin-bottom: "50px";
+}
+
+.Homepage-root img {
+  width: "300px";
+  height: "300px";
+}
+
+.Homepage-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-family: "Comic Sans MS", cursive;
+  font-style: italic;
+}
+
+.homepage-button {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #fff;
+  color: #fff;
+  font-weight: bold;
+  background: none;
+  padding: 0.75rem 1rem 1rem 1rem;
+  border-radius: 9999px;
+  font-size: 1.5rem;
+  margin-top: 50px; /* removed unnecessary quotes */
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
