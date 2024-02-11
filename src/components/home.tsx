@@ -1,8 +1,13 @@
 import React from "react";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
-  //   const router = useRouter();
+  const navigate = useNavigate();
+
+  const handleEnterClick = () => {
+    navigate("/getting-married");
+  };
 
   return (
     <div
@@ -22,7 +27,9 @@ const Home: React.FC = () => {
         </div>
         <h1 className="Homepage-title">We're getting</h1>
         <h1 className="Homepage-title">married</h1>
-        <button className="homepage-button">Enter</button>
+        <button className="homepage-button" onClick={handleEnterClick}>
+          Enter
+        </button>
       </div>
     </div>
   );
