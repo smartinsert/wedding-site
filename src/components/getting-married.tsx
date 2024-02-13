@@ -19,12 +19,18 @@ const GettingMarried: React.FC = () => {
   return (
     <>
       <div style={{ textAlign: "center" }}>
-        <div style={{ backgroundColor: "pink", marginBottom: "2rem" }}>
+        <div
+          style={{
+            background: 'url("images/wedding_banner.jpg") center/cover',
+            minHeight: "1000px",
+          }}
+        >
           <div className="Homepage-root-div">
             <img
               alt="Wedding Logo"
               src="/images/wedding_logo.png"
               className="Homepage-root-img"
+              style={{ marginTop: "27rem" }}
             />
           </div>
           <div
@@ -33,10 +39,11 @@ const GettingMarried: React.FC = () => {
               fontSize: "2rem",
               fontWeight: "bold",
               marginBottom: "1rem",
-              marginTop: "1rem",
+              marginTop: "5rem",
+              color: "tan",
             }}
           >
-            We're Getting Married
+            Are Getting Married
           </div>
         </div>
         <p
@@ -91,7 +98,8 @@ const GettingMarried: React.FC = () => {
               color: "#555",
             }}
           >
-            Aguada - Siolim Rd, Gauravaddo, Calangute, Goa 403516
+            Hotel Le Meridien, Aguada - Siolim Rd, Gauravaddo, Calangute, Goa
+            403516
           </p>
         </div>
         {/* Right Side */}
@@ -151,6 +159,126 @@ const GettingMarried: React.FC = () => {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+      <hr
+        style={{ margin: "2rem auto", width: "50%", border: "1px solid #ccc" }}
+      />
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        {/* Card 1 */}
+        <div
+          style={{
+            width: "300px",
+            position: "relative",
+            minHeight: "300px",
+            borderRadius: "8px",
+            overflow: "hidden",
+            marginBottom: "2rem",
+          }}
+        >
+          <img
+            src="images/goa.jpg"
+            alt="Card 1"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          />
+          <button
+            style={{
+              width: "100%",
+              padding: "10px",
+              background: "rgba(52, 152, 219, 0.7)",
+              color: "#fff",
+              border: "none",
+              position: "absolute",
+              bottom: 0,
+              fontSize: "1.2rem",
+              fontFamily: "Protest Riot, serif",
+            }}
+          >
+            Places To Go
+          </button>
+        </div>
+
+        {/* Card 2 */}
+        <div
+          style={{
+            width: "300px",
+            padding: "20px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            minHeight: "300px",
+            marginBottom: "2rem",
+          }}
+        >
+          <img
+            src="/path/to/card2-image.jpg"
+            alt="Card 2"
+            style={{
+              width: "100%",
+              height: "150px",
+              objectFit: "cover",
+              marginBottom: "1rem",
+            }}
+          />
+          <button
+            style={{
+              width: "100%",
+              padding: "10px",
+              background: "#3498db",
+              color: "white",
+              border: "none",
+              fontSize: "1.2rem",
+              fontFamily: "Protest Riot, serif",
+            }}
+          >
+            Origin Story
+          </button>
+        </div>
+
+        {/* Card 3 */}
+        <div
+          style={{
+            width: "300px",
+            position: "relative",
+            minHeight: "300px",
+            borderRadius: "8px",
+            overflow: "hidden",
+            marginBottom: "2rem",
+          }}
+        >
+          <img
+            src="/images/dog.jpg"
+            alt="Card 3"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          />
+          <button
+            style={{
+              width: "100%",
+              padding: "10px",
+              background: "rgba(200, 145, 20, 0.7)",
+              color: "#fff",
+              border: "none",
+              position: "absolute",
+              bottom: 0,
+              fontSize: "1.2rem",
+              fontFamily: "Protest Riot, serif",
+            }}
+          >
+            Find Out Here
+          </button>
         </div>
       </div>
     </>
