@@ -104,60 +104,69 @@ const GettingMarried: React.FC = () => {
         </div>
         {/* Right Side */}
         <div style={{ flex: 1, padding: "20px" }}>
-          <div style={{ marginTop: "2rem" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginTop: "-1.75rem",
+            }}
+          >
             <h2
               style={{
                 fontSize: "1.8rem",
                 fontWeight: "bold",
                 marginBottom: "1rem",
+                fontFamily: "Protest Riot, serif",
               }}
             >
               Agenda for the day
             </h2>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-              }}
-            >
-              {events.map((event, index) => (
-                <div
-                  key={index}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            {events.map((event, index) => (
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "1rem",
+                  flexDirection: index % 2 === 0 ? "row" : "row-reverse",
+                }}
+              >
+                {/* Dot for each event */}
+                <img
+                  src={event.image}
+                  alt={event.title}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "1rem",
-                    flexDirection: index % 2 === 0 ? "row" : "row-reverse",
+                    width: "30px",
+                    height: "30px",
+                    marginRight: index % 2 === 0 ? "1rem" : 0,
+                    marginLeft: index % 2 !== 0 ? "1rem" : 0,
                   }}
-                >
-                  {/* Dot for each event */}
-                  <img
-                    src={event.image}
-                    alt={event.title}
+                />
+                {/* Event details */}
+                <div>
+                  <p
                     style={{
-                      width: "30px",
-                      height: "30px",
-                      marginRight: index % 2 === 0 ? "1rem" : 0,
-                      marginLeft: index % 2 !== 0 ? "1rem" : 0,
+                      fontSize: "1.2rem",
+                      fontWeight: "bold",
+                      marginBottom: "0.5rem",
+                      fontFamily: "Protest Revolution, serif",
                     }}
-                  />
-                  {/* Event details */}
-                  <div>
-                    <p
-                      style={{
-                        fontSize: "1.2rem",
-                        fontWeight: "bold",
-                        marginBottom: "0.5rem",
-                      }}
-                    >
-                      {event.title}
-                    </p>
-                    <p>{event.time}</p>
-                  </div>
+                  >
+                    {event.title}
+                  </p>
+                  <p>{event.time}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -188,57 +197,102 @@ const GettingMarried: React.FC = () => {
               left: 0,
             }}
           />
-          <button
+          <div
             style={{
-              width: "100%",
-              padding: "10px",
-              background: "rgba(52, 152, 219, 0.7)",
-              color: "#fff",
-              border: "none",
               position: "absolute",
               bottom: 0,
-              fontSize: "1.2rem",
-              fontFamily: "Protest Riot, serif",
+              left: 0,
+              width: "100%",
+              padding: "20px",
+              boxSizing: "border-box",
+              color: "#fff",
+              textAlign: "center",
             }}
           >
-            Places To Go
-          </button>
+            <button
+              style={{
+                padding: "10px",
+                bottom: 0,
+                background: "rgba(52, 152, 219, 0.7)",
+                color: "#fff",
+                border: "none",
+                marginTop: "1rem",
+                transition: "background-color 0.3s",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+                fontFamily: "Protest Riot, serif",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  "rgba(41, 128, 185, 0.9)")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  "rgba(52, 152, 219, 0.7)")
+              }
+            >
+              Places To Go
+            </button>
+          </div>
         </div>
 
         {/* Card 2 */}
         <div
           style={{
             width: "300px",
-            padding: "20px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
+            position: "relative",
             minHeight: "300px",
+            borderRadius: "8px",
+            overflow: "hidden",
             marginBottom: "2rem",
           }}
         >
           <img
-            src="/path/to/card2-image.jpg"
+            src="/images/couple-picture.jpg"
             alt="Card 2"
             style={{
               width: "100%",
-              height: "150px",
+              height: "100%",
               objectFit: "cover",
-              marginBottom: "1rem",
+              position: "absolute",
+              top: 0,
+              left: 0,
             }}
           />
-          <button
+          <div
             style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
               width: "100%",
-              padding: "10px",
-              background: "#3498db",
-              color: "white",
-              border: "none",
-              fontSize: "1.2rem",
-              fontFamily: "Protest Riot, serif",
+              padding: "20px",
+              boxSizing: "border-box",
+              color: "#fff",
+              textAlign: "center",
             }}
           >
-            Origin Story
-          </button>
+            <button
+              style={{
+                padding: "10px",
+                background: "rgba(0, 0, 0, 0.7)",
+                color: "#fff",
+                border: "none",
+                marginTop: "1rem",
+                transition: "background-color 0.3s",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+                fontFamily: "Protest Riot, serif",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.9)")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.6)")
+              }
+            >
+              Origin Story
+            </button>
+          </div>
         </div>
 
         {/* Card 3 */}
@@ -264,21 +318,42 @@ const GettingMarried: React.FC = () => {
               left: 0,
             }}
           />
-          <button
+          <div
             style={{
-              width: "100%",
-              padding: "10px",
-              background: "rgba(200, 145, 20, 0.7)",
-              color: "#fff",
-              border: "none",
               position: "absolute",
               bottom: 0,
-              fontSize: "1.2rem",
-              fontFamily: "Protest Riot, serif",
+              left: 0,
+              width: "100%",
+              padding: "20px",
+              boxSizing: "border-box",
+              color: "#fff",
+              textAlign: "center",
             }}
           >
-            Find Out Here
-          </button>
+            <button
+              style={{
+                padding: "10px",
+                background: "rgba(200, 145, 20, 0.7)",
+                color: "#fff",
+                border: "none",
+                marginTop: "1rem",
+                transition: "background-color 0.3s",
+                cursor: "pointer",
+                fontSize: "1.2rem",
+                fontFamily: "Protest Riot, serif",
+              }}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  "rgba(200, 145, 20, 0.8)")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  "rgba(200, 145, 20, 0.7)")
+              }
+            >
+              Find Out Here
+            </button>
+          </div>
         </div>
       </div>
     </>
