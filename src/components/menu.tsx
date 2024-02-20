@@ -32,7 +32,7 @@ const Menu: React.FC = () => {
           style={{
             width: "30px",
             height: "3px",
-            backgroundColor: "#333",
+            backgroundColor: "#FFFFCC",
             marginBottom: "6px",
             transition: "0.4s",
             transform: isMenuOpen ? "rotate(-45deg) translate(-5px, 6px)" : "",
@@ -42,7 +42,7 @@ const Menu: React.FC = () => {
           style={{
             width: "30px",
             height: "3px",
-            backgroundColor: "#333",
+            backgroundColor: "#FFFFCC",
             marginBottom: "6px",
             transition: "0.4s",
             opacity: isMenuOpen ? 0 : 1,
@@ -52,7 +52,7 @@ const Menu: React.FC = () => {
           style={{
             width: "30px",
             height: "3px",
-            backgroundColor: "#333",
+            backgroundColor: "#FFFFCC",
             marginBottom: "0px",
             transition: "0.4s",
             transform: isMenuOpen ? "rotate(45deg) translate(-5px, -6px)" : "",

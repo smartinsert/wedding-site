@@ -30,7 +30,6 @@ const GettingMarried: React.FC = () => {
               alt="Wedding Logo"
               src="/images/wedding_logo.png"
               className="Homepage-root-img"
-              style={{ marginTop: "27rem" }}
             />
           </div>
           <div
@@ -39,7 +38,7 @@ const GettingMarried: React.FC = () => {
               fontSize: "2rem",
               fontWeight: "bold",
               marginBottom: "1rem",
-              marginTop: "5rem",
+              marginTop: "45rem",
               color: "tan",
             }}
           >
@@ -118,6 +117,7 @@ const GettingMarried: React.FC = () => {
                 fontWeight: "bold",
                 marginBottom: "1rem",
                 fontFamily: "Protest Riot, serif",
+                color: "#555",
               }}
             >
               Agenda for the day
@@ -159,11 +159,22 @@ const GettingMarried: React.FC = () => {
                       fontWeight: "bold",
                       marginBottom: "0.5rem",
                       fontFamily: "Protest Revolution, serif",
+                      color: "#555",
                     }}
                   >
                     {event.title}
                   </p>
-                  <p>{event.time}</p>
+                  <p
+                    style={{
+                      fontSize: "1rem",
+                      fontWeight: "lighter",
+                      marginBottom: "0.5rem",
+                      fontFamily: "Protest Revolution, serif",
+                      color: "#555",
+                    }}
+                  >
+                    {event.time}
+                  </p>
                 </div>
               </div>
             ))}

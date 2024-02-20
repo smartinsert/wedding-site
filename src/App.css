@@ -38,6 +38,13 @@
   position: relative;
 }
 
+/* Media queries for smaller height */
+@media screen and (max-height: 700px) {
+  .Homepage-background-image {
+    height: 145vh; /* Adjusted for smaller height screens */
+  }
+}
+
 .Homepage-root {
   color: #fff;
   text-align: center;
@@ -59,22 +66,23 @@
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  font-family: "Comic Sans MS", cursive;
-  font-style: italic;
+  color: #ffd580;
+  font-family: "Protest Revolution", serif;
 }
 
 .homepage-button {
   border-width: 2px;
   border-style: solid;
-  border-color: #fff;
-  color: #fff;
+  border-color: #ffdf80;
+  color: #ffd580;
   font-weight: bold;
   background: none;
-  padding: 0.75rem 1rem 1rem 1rem;
+  padding: 1rem 2rem;
   border-radius: 9999px;
   font-size: 1.5rem;
-  margin-top: 50px; /* removed unnecessary quotes */
+  margin-top: 10%; /* Adjusted for responsiveness */
   cursor: pointer;
+  font-family: "Protest Riot", serif;
 }
 
 @keyframes App-logo-spin {
