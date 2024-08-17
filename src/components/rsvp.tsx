@@ -11,8 +11,15 @@ import {
   Grid,
   FormControlLabel,
   FormGroup,
+  ButtonGroup,
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
+import Visibility from "@mui/icons-material/Visibility";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import axios from "axios";
 
 interface FormData {
   firstName: string;
@@ -32,6 +39,8 @@ const RSVP: React.FC = () => {
     numberOfAttendees: 1,
     notes: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [password, setPassword] = useState("");
 
   const handleChange = (
     event:
@@ -61,13 +70,132 @@ const RSVP: React.FC = () => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // TODO: Handle the submission logic (e.g., send data to the server)
+  const axiosInstance = axios.create({
+    baseURL: "http://localhost:5000", // Adjust the URL as needed
+  });
 
-    // For now, log the form data to the console
-    console.log("Form Data:", formData);
+  const addGuest = async (guest: FormData) => {
+    try {
+      const response = await axiosInstance.post("/api/guests", guest);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  const updateGuest = async (id: any, guest: FormData) => {
+    try {
+      const response = await axiosInstance.put(`/api/guests/${id}`, guest);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await axiosInstance.get("/api/guests", {
+        params: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+        },
+      });
+
+      console.log(`Response is ${JSON.stringify(response)}`);
+
+      if (response.data.length > 0) {
+        // Update an existing guest
+        const id = response.data[0]._id;
+        await handleUpdate(id);
+      } else {
+        // Add a new guest
+        await addGuest(formData);
+      }
+
+      // Reset form data
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        attending: false,
+        numberOfAttendees: 1,
+        notes: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleUpdate = async (id: any) => {
+    try {
+      // Call updateGuest function to update an existing guest
+      await updateGuest(id, formData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleViewGuests = async () => {
+    setIsModalOpen(true);
+  };
+
+  async function handlePasswordSubmit(): Promise<void> {
+    if (password === "password") {
+      try {
+        const response = await axiosInstance.get("/api/allGuests");
+        const guests = response.data;
+        const guestDetails = guests
+          .map(
+            (guest: {
+              id: any;
+              firstName: string;
+              lastName: string;
+              email: string;
+              attending: boolean;
+              numberOfAttendees: number;
+              notes: string;
+            }) =>
+              `<tr key=${guest.id}>
+            <td>${guest.firstName}</td>
+            <td>${guest.lastName}</td>
+            <td>${guest.email}</td>
+            <td>${guest.attending ? "Yes" : "No"}</td>
+            <td>${guest.numberOfAttendees}</td>
+            <td>${guest.notes}</td>
+          </tr>`
+          )
+          .join("");
+
+        const newTab = window.open("", "_blank");
+        if (newTab) {
+          newTab.document.body.innerHTML = `
+            <table>
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Visiting</th>
+                  <th>Members</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${guestDetails}
+              </tbody>
+            </table>
+          `;
+        }
+      } catch (error) {
+        console.error("Error fetching guest details:", error);
+      }
+      setIsModalOpen(false);
+    } else {
+      alert("Incorrect password. Please try again.");
+    }
+  }
 
   return (
     <>
@@ -220,7 +348,6 @@ const RSVP: React.FC = () => {
                   </Select>
                 </FormControl>
               )}
-
               <Grid item xs={12} md={6}>
                 <TextareaAutosize
                   name="notes"
@@ -237,23 +364,68 @@ const RSVP: React.FC = () => {
                   }}
                 />
               </Grid>
-
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                style={{
-                  fontFamily: "Protest Revolution, serif",
-                  fontSize: "1rem",
-                  fontWeight: "bold",
-                }}
-              >
-                SUBMIT
-              </Button>
+              <ButtonGroup>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  style={{
+                    fontFamily: "Protest Revolution, serif",
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Submit
+                </Button>
+                <Tooltip title="View Guests" arrow>
+                  <IconButton onClick={handleViewGuests}>
+                    <Visibility />
+                  </IconButton>
+                </Tooltip>
+              </ButtonGroup>
             </form>
           </Grid>
         </Grid>
+        <Modal
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              width: 300,
+              bgcolor: "background.paper",
+              boxShadow: 24,
+              p: 4,
+            }}
+          >
+            <TextField
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{
+                fontFamily: "Protest Revolution, serif",
+                fontSize: "1rem",
+                fontWeight: "bold",
+                marginTop: "2rem",
+              }}
+              onClick={handlePasswordSubmit}
+            >
+              Submit
+            </Button>
+          </Box>
+        </Modal>
       </div>
     </>
   );
